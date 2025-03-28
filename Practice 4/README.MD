@@ -401,8 +401,8 @@ int main() {
 #include <stdlib.h>
 #include <time. h>
 
-#def ine SIZE 8192
-#def ine REPEATS 10
+#def int SIZE 8192
+#def int REPEATS 10
 
 double measure_row_access (int arr [SIZE][SIZE]) {
   clock_t start = clock();
@@ -460,6 +460,10 @@ int main() {
 
 ## Результат роботи:
 
+*`#def int SIZE 1024`*
+
 ![](task8(1024).png)
+
+*`#def int SIZE 8192`*
 
 ![](task8(8192).png)
