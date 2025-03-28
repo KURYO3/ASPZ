@@ -416,3 +416,42 @@ int main(int argc, char *argv[]) {
 Вміст файлі `source.txt` та `destination.txt`:
 
 ![](task5_2.png)
+
+
+# ЗАВДАННЯ 6:
+
+## Умова:
+
+Напишіть програму, що демонструє використання обмеження (`max stack segment size`). Підказка: рекурсивна програма активно використовує стек.
+
+## Код програми:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void recursive_func(int depth) {
+    printf("Recursion depth: %d\n", depth);
+    recursive_func(depth + 1);
+}
+
+int main() {
+    printf("Starting recursive function...\n");
+    recursive_func(1);
+    return EXIT_SUCCESS;
+}
+```
+
+## Виконання
+
+Ця програма має рекурсивну функцію для перевірки `max stack segment size`. Перед запуском доречно встановити ліміт на сегмент стека за допомогою
+
+```bash
+ulimit -s 256
+```
+
+![](task6.png)
+
+Після досягнення ліміту отримуємо `Segmentation fault (core dumped)`
+
+![](task6_1.png)
