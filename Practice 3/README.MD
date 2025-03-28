@@ -103,7 +103,19 @@ apt update && apt install -y linux-tools-common linux-tools-generic linux-tools-
 
 *Пізніше, дослідницьким шляхом, було з'ясвоно, що встановлення лімітів за допомогою команди `ulimit -u` впливає на кількість запущених процесів користувачем, а не системою загалом, тож дана команда виявиться марною.*
 
-![](task2_2.png)
+Далі за допомогою команди `nano test.sh` створюємо та редагуємо скрипт:
+
+```sh
+#!/bin/bash
+
+counter=0
+while true; do
+  sleep 2 &
+  counter=$((counter + 1))
+  echo "Created $counter processes'
+
+done
+```
 
 ![](task2_3.png)
 
