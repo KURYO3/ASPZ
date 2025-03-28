@@ -328,3 +328,91 @@ int main() {
 Для початку запустимо docker та встановимо `gcc` та `nano` для написання програми, яка імітує лотерею, вибираючи випадкові числа у двох наборах: 7 чисел із діапазону від 1 до 49 і 6 чисел із діапазону від 1 до 36. Для цього використовується алгоритм перемішування масиву чисел, з якого беруться перші N елементів (де N – кількість необхідних чисел). Генерація чисел здійснюється за допомогою вбудованого генератора випадкових чисел, ініціалізованого поточним часом. Перед початком роботи програми встановлюється ліміт часу використання процесора за допомогою функції `setrlimit` із параметром `RLIMIT_CPU`. У цьому коді максимальний ліміт часу процесора встановлений на 2 секунди. Якщо програма перевищує цей ліміт, система автоматично завершує її виконання. Спочатку програма генерує 7 чисел із діапазону 1–49, потім 6 чисел із діапазону 1–36. Результати кожного набору чисел виводяться на екран. Якщо програма завершує свою роботу без перевищення ліміту процесора, користувач бачить повідомлення про успішне завершення генерації лотереї. У разі перевищення ліміту програма примусово завершується операційною системою, і користувач отримає системне повідомлення про завершення.
 
 ![](task4.png)
+
+
+# ЗАВДАННЯ 5:
+
+## Умова:
+
+Напишіть програму для копіювання одного іменованого файлу в інший. Імена файлів передаються у вигляді аргументів.
+Програма має:
+- перевіряти, чи передано два аргументи, інакше виводити "Program need two arguments";
+
+- перевіряти доступність першого файлу для читання, інакше виводити "Cannot open file .... for reading";
+
+- перевіряти доступність другого файлу для запису, інакше виводити "Cannot open file .... for writing";
+
+- обробляти ситуацію перевищення обмеження на розмір файлу.
+
+
+## Код програми:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define BUFFER_SIZE 1024
+#define MAX_FILE_SIZE 1048576
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Program need two arguments\n");
+        return EXIT_FAILURE;
+    }
+
+    const char *source_file = argv[1];
+    const char *destination_file = argv[2];
+
+    FILE *source = fopen(source_file, "rb");
+    if (source == NULL) {
+        printf("Cannot open file %s for reading\n", source_file);
+        return EXIT_FAILURE;
+    }
+
+    FILE *destination = fopen(destination_file, "wb");
+    if (destination == NULL) {
+        fclose(source);
+        printf("Cannot open file %s for writing\n", destination_file);
+        return EXIT_FAILURE;
+    }
+
+    char buffer[BUFFER_SIZE];
+    size_t bytes_read;
+    size_t total_written = 0;
+
+    while ((bytes_read = fread(buffer, 1, BUFFER_SIZE, source)) > 0) {
+        if (total_written + bytes_read > MAX_FILE_SIZE) {
+            printf("Error: File size limit exceeded while writing to %s\n", destination_file);
+            fclose(source);
+            fclose(destination);
+            return EXIT_FAILURE;
+        }
+
+        size_t bytes_written = fwrite(buffer, 1, bytes_read, destination);
+        if (bytes_written != bytes_read) {
+            printf("Error writing to file %s\n", destination_file);
+            fclose(source);
+            fclose(destination);
+            return EXIT_FAILURE;
+        }
+
+        total_written += bytes_written;
+    }
+
+    fclose(source);
+    fclose(destination);
+
+    printf("File successfully copied from %s to %s\n", source_file, destination_file);
+    return EXIT_SUCCESS;
+}
+```
+
+## Виконня:
+
+Програма приймає два аргументи: ім'я вхідного файлу (джерела) і ім'я вихідного файлу (призначення). Якщо кількість аргументів неправильна, програма завершує роботу з повідомленням: "Program need two arguments". Спочатку програма намагається відкрити вхідний файл для читання. Якщо файл недоступний, вона виводить повідомлення: "Cannot open file [ім'я_файлу] for reading" і завершує роботу. Потім вона намагається відкрити вихідний файл для запису. Якщо файл неможливо відкрити для запису, програма виводить повідомлення: "Cannot open file [ім'я_файлу] for writing" і також завершує роботу. Далі починається процес копіювання. Дані зчитуються з вхідного файлу блоками фіксованого розміру (1024 байти) і записуються у вихідний файл. Під час кожного запису програма перевіряє, чи не перевищено встановлений ліміт розміру файлу (1 MB). Якщо загальний розмір вихідного файлу перевищує цей ліміт, програма виводить повідомлення: "Error: File size limit exceeded while writing to [ім'я_файлу]" і завершує роботу. Якщо весь процес копіювання завершується успішно, програма виводить повідомлення: "File successfully copied from [вхідний_файл] to [вихідний_файл]".
+
+![](task5_1.png)
+
+Вміст файлі `source.txt` та `destination.txt`:
+
+![](task5_2.png)
