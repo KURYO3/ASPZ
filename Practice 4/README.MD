@@ -1,4 +1,5 @@
 1
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -19,6 +20,7 @@ free(ptr);
 }
 return 0;
 }
+```
 
 2
 #include <stdio.h>
