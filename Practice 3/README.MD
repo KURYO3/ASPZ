@@ -89,9 +89,18 @@ docker run -it --rm --privileged ubuntu bash
 
 ## Виконання:
 
-Для початку запускаємо контейнер та за допомогою ```bashapt update && apt install -y linux-tools-common linux-tools-generic linux-tools-$(uname -r)``` встановлюємо `perf`
+Для початку запускаємо контейнер та встановлюємо `perf` за допомогою 
+```bash
+apt update && apt install -y linux-tools-common linux-tools-generic linux-tools-$(uname -r)
+```
+
+Після цього перевіряємо встановлення `perf` за допомогою `perf --version` та встановлюємо ліміт на кількість запущених процесів:
 
 ![](task2_1.png)
+
+***Примітка:** 
+
+Пізніше, дослідницьким шляхом, було з'ясвоно, що встановлення лімітів за допомогою команди `ulimit -u` впливає на кількість запущених процесів користувачем, а не системою загалом, тож дана команда виявиться марною.*
 
 ![](task2_2.png)
 
