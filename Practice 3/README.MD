@@ -415,4 +415,4 @@ int main(int argc, char *argv[]) {
 
 Вміст файлі `source.txt` та `destination.txt`:
 
-![](task5_3.png)
+![](task5_2.png)
