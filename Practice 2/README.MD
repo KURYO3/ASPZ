@@ -47,6 +47,9 @@
 
 ![](task2/task2_1.png)
 
+---
+---
+
 ## [Код до завдання](task2/task2_2.c)
 
 ## Пояснення програми:
@@ -56,6 +59,9 @@
 ## Результат роботи:
 
 ![](task2/task2_2.png)
+
+---
+---
 
 ## [Код до завдання](task2/task2_3.c)
 
@@ -67,6 +73,9 @@
 
 ![](task2/task2_3.png)
 
+---
+---
+
 ## [Код до завдання](task2/task2_4.c)
 
 ## Пояснення програми:
@@ -76,6 +85,9 @@
 ## Результат роботи:
 
 ![](task2/task2_4.png)
+
+---
+---
 
 ## [Код до завдання](task2/task2_4.c)
 
@@ -114,6 +126,9 @@ int main() {
 
 ![](task3/task3_2.png)
 
+---
+---
+
 ## [Код до завдання](task3/task3_2.c)
 
 ## Пояснення програми:
@@ -123,6 +138,9 @@ int main() {
 ## Результат роботи:
 
 ![](task3/task3_1.png)
+
+---
+---
 
 ## [Код до завдання](task3/task3_3.c)
 
@@ -273,46 +291,16 @@ GDB:
 
 Відомо, що при виклику процедур і поверненні з них процесор використовує стек.Чи можна в такій схемі обійтися без лічильника команд (IP), використовуючи замість нього вершину стека? Обґрунтуйте свою відповідь та наведіть приклади.
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-
-void func() {
-    printf ("Inside func()\n");
-}
-
-int main() {
-    func();
-    printf ("Back in main ()\n");
-    return 0;
-}
-```
+## [Код до завдання](task5/task5_1.c)
 
 ## Результат роботи:
 
-![](task5_1.png)
+![](task5/task5_1.png)
 
-## Код задачі:
+---
+---
 
-```c
-#include <stdio.h>
-
-void func_return() {
-    asm("addq $8, %rsp");
-}
-
-void func() {
-    printf ("Inside func ()\n");
-    func_return();
-}
-
-int main() {
-    func();
-    printf ("Back in main ( )\n");
-    return 0;
-}
-```
+## [Код до завдання](task5/task5_2.c)
 
 ## Пояснення програми:
 
@@ -333,7 +321,7 @@ int main() {
 
 ## Результат роботи:
 
-![](task5_2.png)
+![](task5/task5_2.png)
 
 # ЗАВДАННЯ ПО ВАРІАНТАХ (7 ВАРІАНТ):
 
@@ -341,47 +329,7 @@ int main() {
 
 Створіть програму, що змінює права доступу до сегментів пам’яті (mprotect).
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/mman.h>
-#include <string.h>
-#include <unistd.h>
-
-#define _GNU_SOURCE
-
-int main() {
-    size_t page_size = sysconf(_SC_PAGESIZE); // Отримуємо розмір сторінки пам’яті
-    void *addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-    
-    if (addr == MAP_FAILED) {
-        perror("mmap failed");
-        return EXIT_FAILURE;
-    }
-
-    printf("Пам’ять виділена за адресою: %p\n", addr);
-    
-    strcpy(addr, "Hello, memory protection!");
-    printf("Дані: %s\n", (char *)addr);
-
-    if (mprotect(addr, page_size, PROT_READ) == -1) {
-        perror("mprotect failed");
-        return EXIT_FAILURE;
-    }
-    printf("Права змінені на тільки для читання\n");
-
-    printf("Читаємо дані: %s\n", (char *)addr);
-
-    printf("Пробуємо змінити дані...\n");
-    strcpy(addr, "This should fail!");
-
-    munmap(addr, page_size);
-
-    return 0;
-}
-```
+## [Код до завдання](task6/task6.c)
 
 ## Пояснення програми:
 
@@ -389,4 +337,4 @@ int main() {
 
 ## Результат роботи:
 
-![](task6.png)
+![](task6/task6.png)
