@@ -23,51 +23,8 @@
 
 ## Код задачі:
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdint.h>
+[task2.c](task2.c)
 
-int main() {
-  int x = -1;
-  void *neg_ptr = malloc(x) ;
-  if (neg_ptr == NULL) {
-    perror ("malloc can't allocate memory for negative size\n");
-  } else {
-    printf ("malloc succesfully allocate memory for negative size\n");
-    free(neg_ptr);
-  }
-
-  int xa = INT_MAX;
-  int xb = 2;
-  int num = xa * xb;
-  printf ("xa: %d, xb: %d, num: %d\n", xa, xb, num) ;
-
-  void *overf low_ptr = malloc (num);
-  if (overf low_ptr == NULL) {
-    perror ("malloc can't allocate memory durind overf low\n");
-  } else {
-    printf ("malloc succesfully allocate memory during overf low\n");
-    free(overflow_ptr);
-  }
-
-  size_t xa1 = SIZE_MAX / 2;
-  size_t xb1 = 3;
-  size_t num1 = xa1 * xb1;
-  printf ("xa1: %zu, xb1: %zu, num1: %zu\n", xa1, xb1, num1) ;
-
-  void *overflow_ptr1 = malloc (num1);
-  if (overf low_ptr1 == NULL) {
-    perror ("malloc can't allocate memory during overflow\n");
-  } else {
-    printf ("malloc succesfully allocate memory during overf low\n");
-    free(overf low_ptr1);
-  }
-
-  return 0;
-}
-```
 ## Пояснення програми:
 
 У цій програмі тестується поведінка `malloc()` при передачі від’ємного значення та при переповненні при множенні двох цілих чисел. Перший тест перевіряє, що станеться, якщо передати -1 як аргумент для `malloc()`. Як видно з результатів, `malloc()` не може виділити пам’ять і повертає `NULL`, що очікувано, оскільки параметр повинен бути беззнаковим числом. Далі програма тестує ситуацію, коли результат множення двох цілих чисел зі знаком викликає переповнення. Від’ємне значення `num` після множення `xa` та `xb` свідчить про переповнення, і спроба виділення такого обсягу пам’яті також завершується помилкою. Аналогічний тест проводиться з беззнаковими змінними, і в 32-бітній системі також виникає переповнення, яке спричиняє помилку при виділенні пам’яті.
