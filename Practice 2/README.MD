@@ -4,24 +4,7 @@
 
 Напишіть програму для визначення моменту, коли time_t закінчиться.Дослідіть, які зміни відбуваються в залежності від 32- та 64-бітної архітектури. Дослідіть сегменти виконуваного файлу.
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-#include <time. h>
-#include <limits.h>
-
-int main() {
-    time_t max_time = (time_t)~((time_t)1 << (sizeof (time_t) * 8 - 1));
-    printf ("Max time_t value: %ld\n", (long)max_time);
-    printf ("Date and time: %s", ctime(&max_time));
-
-    time_t overf low_time = max_time + 1;
-    printf ("After overf low: %s", ctime(&overflow_time) );
-
-    return 0;
-}
-```
+## [Код до завдання](task1/task1.c)
 
 ## Пояснення програми:
 
@@ -29,7 +12,7 @@ int main() {
 
 ## Результат роботи:
 
-![](task1.png)
+![](task1/task1.png)
 
 
 # ЗАВДАННЯ 2:
@@ -54,16 +37,7 @@ int main() {
 
 ● на розмір файлу a.out впливає компіляція для налагодження, але не сегменти.
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-
-int main() {
-    printf ("Hello world!\n");
-    return 0:
-}
-```
+## [Код до завдання](task2/task2_1.c)
 
 ## Пояснення програми:
 
@@ -71,20 +45,9 @@ int main() {
 
 ## Результат роботи:
 
-![](task2_1.png)
+![](task2/task2_1.png)
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-
-int arr[1000];
-
-int main() {
-    printf ("Hello world!\n");
-    return 0:
-}
-```
+## [Код до завдання](task2/task2_2.c)
 
 ## Пояснення програми:
 
@@ -92,20 +55,9 @@ int main() {
 
 ## Результат роботи:
 
-![](task2_2.png)
+![](task2/task2_2.png)
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-
-int arr[1000] = {1};
-
-int main() {
-    printf ("Hello world!\n");
-    return 0:
-}
-```
+## [Код до завдання](task2/task2_3.c)
 
 ## Пояснення програми:
 
@@ -113,22 +65,9 @@ int main() {
 
 ## Результат роботи:
 
-![](task2_3.png)
+![](task2/task2_3.png)
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-void func() {
-    int arr1[1000];
-    int arr2[1000] = {1};
-}
-  
-int main() {
-    printf ("Hello world!\n");
-    return 0:
-}
-```
+## [Код до завдання](task2/task2_4.c)
 
 ## Пояснення програми:
 
@@ -136,22 +75,9 @@ int main() {
 
 ## Результат роботи:
 
-![](task2_4.png)
+![](task2/task2_4.png)
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-void func() {
-    int arr1[1000];
-    int arr2[1000] = {1};
-}
-  
-int main() {
-    printf ("Hello world!\n");
-    return 0:
-}
-```
+## [Код до завдання](task2/task2_4.c)
 
 ## Пояснення програми:
 
@@ -159,9 +85,9 @@ int main() {
 
 ## Результат роботи:
 
-![](task2_5_1.png)
+![](task2/task2_5_1.png)
 
-![](task2_5_2.png)
+![](task2/task2_5_2.png)
 
 
 # ЗАВДАННЯ 3:
@@ -182,49 +108,13 @@ int main() {
 
 *Примітка*: стек може розташовуватися за різними адресами на різних архітектурах та різних ОС. Хоча ми говоримо про вершину стека, на більшості процесорів стек зростає вниз, до пам’яті з меншими значеннями адрес.
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-
-int main() {
-        int i;
-        printf(&quot;The stack top is near %p\n&quot;, &amp;i);
-        return 0;
-}
-```
+## [Код до завдання](task3/task3_1.c)
 
 ## Результат роботи:
 
-![](task3_2.png)
+![](task3/task3_2.png)
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-int x = 1;
-int y;
-
-void func() {
-    int z;
-    int *heap = malloc(sizeof (int));
-
-    printf ("Text segment (code): %p\n", (void*)func);
-    printf ("Initialized data segmant: %p\n", (void*)&x);
-    printf ("BSS segmant: %p\n", (void*)&y);
-    printf ("Heap segment: %p\n", (void*)heap);
-    printf ("Stack segment: %p\n", (void*) &z);
-
-    free (heap);
-}
-
-int main() {
-    func();
-    return 0;
-}
-```
+## [Код до завдання](task3/task3_2.c)
 
 ## Пояснення програми:
 
@@ -232,26 +122,9 @@ int main() {
 
 ## Результат роботи:
 
-![](task3_1.png)
+![](task3/task3_1.png)
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-
-void func() {
-    int arr1[10000];
-    int arr2[10000];
-    printf ("Stack top after allocation: %p\n", &arr2);
-}
-
-int main() {
-    int i;
-    printf ("Initial stack top: %p\n", &i);
-    func();
-    return 0;
-}
-```
+## [Код до завдання](task3/task3_3.c)
 
 ## Пояснення програми:
 
@@ -259,7 +132,7 @@ int main() {
 
 ## Результат роботи:
 
-![](task3_3.png)
+![](task3/task3_3.png)
 
 
 # ЗАВДАННЯ 4:
@@ -360,43 +233,7 @@ $ gstack 24957
 
 gstack — це, по суті, оболонковий скрипт (wrapper shell script), який неінтерактивно викликає GDB і запускає команду backtrace, яку ви щойно використали. Завдання: Ознайомтеся з виводом gstack і порівняйте його з GDB.
 
-## Код задачі:
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-
-#define MSG &quot;In function %20s; &amp;localvar = %p\n&quot;
-
-static void bar_is_now_closed(void) {
-    int localvar = 5;
-    printf(MSG, FUNCTION, &localvar);
-    printf("\n Now blocking on pause()...\n");
-
-    pause();
-}
-
-static void bar(void) {
-    int localvar = 5;
-    printf(MSG, FUNCTION, &localvar);
-    bar_is_now_closed();
-}
-
-static void foo(void) {
-    int localvar = 5;
-    printf(MSG, FUNCTION, &localvar);
-    bar();
-}
-
-int main(int argc, char **argv) {
-    int localvar = 5;
-    printf(MSG, FUNCTION, &localvar);
-    foo();
-    exit(EXIT_SUCCESS);
-}
-```
+## [Код до завдання](task4/task4.c)
 
 ## Пояснення програми:
 
@@ -419,15 +256,15 @@ int main(int argc, char **argv) {
 
 Запуск програми:
 
-![](task4.png)
+![](task4/task4.png)
 
 Procstat:
 
-![](task4_1.png)
+![](task4/task4_1.png)
 
 GDB:
 
-![](task4_2.png)
+![](task4/task4_2.png)
 
 
 # ЗАВДАННЯ 5:
