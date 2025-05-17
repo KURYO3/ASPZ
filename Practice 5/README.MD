@@ -22,9 +22,9 @@
 
 ### Результат запуску програми
 
-![](task1_files/task1_2.png)
+![](task_files/task1_2.png)
 
-![](task1_files/task1_3.png)
+![](task_files/task1_3.png)
 
-![](task1_files/task1_6.png)
+![](task_files/task1_6.png)
 
