@@ -6,9 +6,9 @@
 
 ## Виконання
 
-### [Код програми](task_1/task_1.c) 
+### [Код програми](task_files/task_1.c) 
 
-### [Модифікований код програми](task_2/task_2.c) 
+### [Модифікований код програми](task_files/task_2.c) 
 
 ### Пояснення
 
@@ -22,9 +22,9 @@
 
 ### Результат запуску програми
 
-![](task1_2/task1_2.png)
+![](task1_files/task1_2.png)
 
-![](task1_3/task1_3.png)
+![](task1_files/task1_3.png)
 
-![](task1_6/task1_6.png)
+![](task1_files/task1_6.png)
 
